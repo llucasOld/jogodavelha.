@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #dff8f8;
+}
+
+.flex {
+    display: flex;
+    margin: 30px;
+    padding: 20px;
+}
+
+footer {
+    padding-top: 13%;
+    margin-left: 30px;
+    color: #000000;
+}
+
+#container h2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    gap: 15px;
+    padding-top: 20px;
+    margin-left: 20px;
+    background-color: rgb(64, 64, 64);
+    height: 590px;
+    width: 200%;
+    border-radius: 20px;
+}
+
+.cell {
+    background-color: rgb(22, 22, 61);
+    border: 40px solid #2a2a38;
+    align-items: center;
+    cursor: pointer;
+    font-family: sans-serif;
+    margin: 20px;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center; /* Centraliza o X ou O horizontalmente */
+    align-items: center; /* Centraliza o X ou O verticalmente */
+    font-size: 80px; /* Ajusta o tamanho da fonte para X e O */
+    color: #fff; /* Define a cor para X e O */
+}
+
+/* Estilo do X */
+.cell.x::before {
+    content: "X";
+}
+
+/* Estilo do O */
+.cell.o::before {
+    content: "O";
+}

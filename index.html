@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="caixa">
+    <div class="board" id="board">
+        <div class="cell" onclick="cellClicked(0)"></div>
+        <div class="cell" onclick="cellClicked(1)"></div>
+        <div class="cell" onclick="cellClicked(2)"></div>
+        <div class="cell" onclick="cellClicked(3)"></div>
+        <div class="cell" onclick="cellClicked(4)"></div>
+        <div class="cell" onclick="cellClicked(5)"></div>
+        <div class="cell" onclick="cellClicked(6)"></div>
+        <div class="cell" onclick="cellClicked(7)"></div>
+        <div class="cell" onclick="cellClicked(8)"></div>
+    </div>
+
+    <script>
+        let currentPlayer = 'X';
+        let board = ['','','','','','','','',''];
+
+        function cellClicked(index) {
+            if (board[index] === '') {
+                board[index] = currentPlayer;
+                document.getElementById('board').children[index].classList.add(currentPlayer.toLowerCase());
+                checkWinner();
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        }
+
+        function checkWinner() {
+            const winConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
+            ];
+
+            for (let condition of winConditions) {
+                const [a, b, c] = condition;
+                if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]) {
+                    alert(`JOGADOR ${board[a]} VENCEU!`);
+                    resetBoard();
+                    return;
+                }
+            }
+
+            if (!board.includes('')) {
+                alert('EMPATE!');
+                resetBoard();
+            }
+        }
+
+        function resetBoard() {
+            currentPlayer = 'X';
+            board = ['', '', '', '', '', '', '', '', ''];
+            for (let i = 0; i < 9; i++) {
+                document.getElementById('board').children[i].classList.remove('x', 'o');
+            }
+        }
+    </script>
+
+    <div id="container">
+          <h1>JOGO DA VELHA</h1>
+        <section class="flex">
+            <h2>Jogo da velha é jogado em um grid 3x3, com um jogador sendo 'X' e outro 'O'. Cada um marca um espaço vazio por vez, buscando alinhar três de seus símbolos.</h2>
+        </section>
+    </div>
+
+    <footer>
+        desenvolvido por: Lucas Oliveira 13/03/24
+    </footer>
+</div>
+
+</body> 
+</html>
